@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brainwave - Main Character Energy</title>
-    <meta name="description" content="Anime-vibe album landing page with playable tracks, downloads, live tour info, and a hero's-journey story." />
-    <meta property="og:title" content="Brainwave - Main Character Energy" />
+    <title>Brainwave - Tracks</title>
+    <meta name="description" content="Stream two tracks, grab downloads, and snag tickets for the Tokyo Dreams Tour." />
+    <meta property="og:title" content="Album Launch - Main Character Energy" />
     <meta property="og:description" content="Stream two tracks, grab downloads, and snag tickets for the Tokyo Dreams Tour." />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#0a1a33" />
@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./downloads/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./downloads/android-chrome-512x512.png">
     <style>
-      :root {
+              :root {
     --bg:#0a1a33; /* deep navy */
     --surface:#0f274d;    /* navy tint */
     --ink:#fefefe; /* text */
@@ -371,13 +371,6 @@ body::after{
     box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5);
 }
 
-    /* Live */
-    .live{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(16px,3vw,28px); padding:clamp(18px,2.5vw,28px); align-items:center}
-    .live h2{color:var(--accent); font-size:clamp(22px,3.2vw,32px); margin:.2rem 0 .6rem}
-    .stage{border-radius:18px; width:100%; aspect-ratio:16/10; object-fit:cover; box-shadow:var(--shadow)}
-    .ticket-btn{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none}
-
-
 /* Footer */
 footer{
     padding:28px 12px;
@@ -385,6 +378,97 @@ footer{
     text-align:center;
     font-size:.95rem;
 }
+        /* Add to your existing styles.css file */
+
+        /* Page Header for secondary pages */
+        .page-header {
+            text-align: center;
+            padding-top: 120px; /* To account for the fixed nav bar */
+            padding-bottom: 40px;
+        }
+        .page-title {
+            font-family: var(--font-rock-salt);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--accent-2);
+            text-shadow: 1px 1px 0 rgba(0,0,0,.35);
+        }
+        .page-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Track list styling */
+        .tracks {
+            display:grid;
+            gap:clamp(18px,2.5vw,26px);
+            margin-bottom: 80px;
+        }
+        .track {
+            display:grid;
+            grid-template-columns:1fr 1.2fr;
+            gap:clamp(14px,2vw,22px);
+            padding:clamp(16px,2vw,22px);
+            background:var(--glass);
+            backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            position:relative;
+            overflow:hidden;
+        }
+        .track::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background-size:cover;
+            background-position:center;
+            opacity:.22;
+            filter:saturate(1.1);
+            z-index:0;
+        }
+        .track--mce::before{background-image:url('img/anime-bg-main-character.jpg')}
+        .track--mop::before{background-image:url('img/anime-bg-mind-over-power.jpg')}
+        .track > *{position:relative; z-index:1}
+    .cover{border-radius:16px; width:400px; height: 600px; aspect-ratio:1/1; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,.6)}
+        .track h3{
+            font-family:var(--font-rock-salt);
+            font-size:clamp(20px,2.8vw,30px);
+            margin:.2rem 0 .5rem;
+            color:var(--accent-2);
+            text-shadow:1px 1px 0 rgba(0,0,0,.35);
+        }
+        .meta{
+            display:flex;
+            gap:.5rem;
+            flex-wrap:wrap;
+            font-weight:600;
+            color:var(--muted);
+        }
+        .controls{
+            display:flex;
+            gap:.6rem;
+            flex-wrap:wrap;
+            margin-top:.6rem;
+        }
+        .badge-chip{
+            padding:.25rem .6rem;
+            border-radius:999px;
+            background:rgba(255,255,255,.08);
+            border:1px solid rgba(255,255,255,.12);
+        }
+        .btn--ghost{
+            background:var(--glass);
+            border-color:#4b5aa7;
+            color:var(--muted);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 900px){
+            .track{grid-template-columns:1fr}
+        }
+
     </style>
 </head>
 <body>
@@ -392,8 +476,8 @@ footer{
     <nav class="main-nav">
         <a href="index.html" class="nav-logo">BRAINWAVE</a>
         <div class="nav-links">
-            <a href="index.html" class="nav-item active">Home</a>
-            <a href="tracks.html" class="nav-item">Tracks</a>
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="tracks.html" class="nav-item active">Tracks</a>
             <a href="tour.html" class="nav-item">Tour</a>
             <a href="about.html" class="nav-item">About</a>
             <a href="contact.html" class="nav-item">Contact Us</a>
@@ -401,119 +485,75 @@ footer{
         <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
     </nav>
 
-    <header class="hero" role="banner">
-        <div class="hero-slide active" style="background-image: url('./img/main-character-cover.jpg');">
-            <div class="hero-content container">
-            
-                <h1 class="title">Main Character Energy</h1>
-                <p class="subtitle">Anime‑inspired beats, electric emotions, and a hero’s‑journey you can dance to.</p>
-                <div class="cta-row">
-                    <a class="btn btn--primary" href="tracks.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                        Listen Now
-                    </a>
-                </div>
-            </div>
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-slide"  class="hero-slide active" style="background-image: url('./img/artist-photo.jpg');">
-            <div class="hero-content container">
-                <h1 class="title">The Journey of Jesse Brainwave</h1>
-                <p class="subtitle">From sketching manga to commanding the stage. A true artist's story.</p>
-                <div class="cta-row">
-                    <a class="btn btn--primary" href="about.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/><path d="M12 10.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 16c-1.33 0-4-1.34-4-2s2.67-2 4-2c1.33 0 4 1.34 4 2s-2.67 2-4 2z"/></svg>
-                        Read More
-                    </a>
-                </div>
-            </div>
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-slide" style="background-image: url('./img/live-performance.jpg');">
-            <div class="hero-content container">
-                <h1 class="title">Tokyo Dreams Tour</h1>
-                <p class="subtitle">Experience the beats, the visuals, and the energy live. Don't miss out.</p>
-                <div class="cta-row">
-                    <a class="btn btn--primary" href="tour.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 18h5v-6h-5v6zm2.5-12h-5V5h5v1zM19 12h-5v-1h5v1zM5 16h5v-1H5v1zM20 5h-5V4h5v1zm-8.5-1v1.5h-5V4h5zM15 16h5v-1h-5v1zM15 8h-5v-1h5v1zM20 8h-5v-1h5v1zM20 10.5h-5v-1h5v1zM5 10.5h5v-1H5v1zM5 13h5v-1H5v1zM20 13h-5v-1h5v1zM5 8h5V7H5v1zM10 13h-5v1h5v-1z"/></svg>
-                        Get Tickets
-                    </a>
-                </div>
-            </div>
-            <div class="hero-overlay"></div>
-        </div>
-    </header>
+    <main class="container">
+        <header class="page-header">
+            <h1 class="page-title">Tracks</h1>
+            <p class="page-subtitle">Stream two tracks from the album "Main Character Energy" and download them for free.</p>
+        </header>
 
-    <main>
-        <section class="card journey container" id="journey" aria-labelledby="journey-title">
-            <div>
-                <h2 id="journey-title">The Journey of Jesse Brainwave</h2>
-                <p>Brainwave’s professional journey began not in a traditional studio, but through a unique fusion of visual and auditory artistry. His formative years were dedicated to the meticulous discipline of manga sketching, an art form that trained his eye for narrative structure and his hand for detail. This visual storytelling background provided the framework for his musical compositions, each track meticulously layered to build a cohesive, compelling story.</p>
-                <p>He honed his technical skills through a period of self-directed learning, leveraging a minimalist home setup to experiment with sound design and digital sampling. This process, defined by resourcefulness and a deep commitment to his craft, allowed him to develop a distinct sonic signature.</p>
-                <p>His public-facing career was initiated on the streets, where he engaged in a form of real-world market testing. Busking provided invaluable experience in audience engagement, allowing him to adapt and refine his performance style in real time. This period, marked by tireless effort in environments ranging from the bustling Shibuya crossings to focused, late-night studio sessions, was critical for his development. Each completed project represented a milestone, and every professional challenge was approached as an opportunity for growth and skill acquisition.</p>
-                <p>This debut album, therefore, is not merely a collection of songs but a professional portfolio—a comprehensive showcase of his capabilities. It represents the culmination of a deliberate, multi-faceted creative process, signaling his transition from an emerging talent to a fully-fledged artist ready to lead his own career narrative.</p>
-            </div>
-            <div class="portrait-container">
-                <img class="portrait" src="./img/artist-photo.jpg" loading="lazy" alt="Stylized portrait of Jesse Brainwave looking stage-ready under neon lights." />
-            </div>
-        </section>
-
-        <br>
-        <br>
-
-        <!-- Live / Tickets -->
-        <section class="card live" id="tour" aria-labelledby="live-title">
-          <img class="stage" src="./img/live-performance.jpg" loading="lazy" alt="Crowd with glow sticks at a high energy anime concert." />
-          <div class="live-text">
-            <h2 id="live-title">Live Performance: Tokyo Dreams Tour</h2>
-            <p>Experience the soundtrack of your coming of age laser sharp visuals, synchronized AR backdrops, and call and response hooks that lift the ceiling. Limited early bird passes include a digital badge and a meet and greet photo op.</p>
-          </div>
-        </section>
-
-        <section class="countdown-card-section container">
-            <div class="countdown-card-grid">
-                <div class="card countdown-card">
-                    <img src="./img/main-character-cover.jpg" alt="A high-energy live performance" loading="lazy" class="card-image">
-                </div>
-                <div class="card countdown-card">
-                    <img src="./img/mind-over-power-cover.jpg" alt="Tokyo city skyline at night" loading="lazy" class="card-image">
-                </div>
-                <div class="card countdown-card">
-                    <img src="./img/icon.png" alt="A concert crowd with lights" loading="lazy" class="card-image">
-                </div>
-            </div>
-            <div class="countdown-overlay" style="margin-top: 540px; ">
-                <h2 class="countdown-title">Tokyo Dreams Tour</h2>
-                <div id="countdown-timer" class="countdown-timer">
-                    <div class="countdown-item">
-                        <span id="days" class="countdown-number">00</span>
-                        <span class="countdown-label">Days</span>
+        <section id="tracks" class="tracks" aria-label="Tracks">
+            <article class="track track--mce" aria-labelledby="mce-title">
+                <img class="cover" src="./img/main-character-cover.jpg" loading="lazy" alt="Cover art for Main Character Energy with bold neon colors.">
+                <div>
+                    <h3 id="mce-title">Main Character Energy</h3>
+                    <p>Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pixel-spark synths kick off an anthem about taking up space without apologizing. It’s the montage song for putting on headphones, lacing your sneakers, and walking into the room like fate owes you a side quest.</p>
+                    <br>
+                    <div class="meta">
+                        <span class="badge-chip">⚡ upbeat</span>
+                        <span class="badge-chip">🎌 J‑pop x alt</span>
+                        <span class="badge-chip">✨ confidence arc</span>
                     </div>
-                    <div class="countdown-item">
-                        <span id="hours" class="countdown-number">00</span>
-                        <span class="countdown-label">Hours</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="minutes" class="countdown-number">00</span>
-                        <span class="countdown-label">Minutes</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="seconds" class="countdown-number">00</span>
-                        <span class="countdown-label">Seconds</span>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="controls" role="group" aria-label="Main Character Energy controls">
+                        <audio controls preload="metadata" aria-label="Play Main Character Energy">
+                            <source src="main-character-energy.mp3" type="audio/mpeg" />
+                        </audio>
+                        <a class="btn btn--ghost" href="main-character-energy.mp3" download aria-label="Download Main Character Energy">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18l-5 5h3v6h4V7h3l-5-5z"/></svg>
+                            Download
+                        </a>
                     </div>
                 </div>
-                <p class="tour-text">Join the ultimate live experience. We’re counting down the moments until we meet.</p>
-                <a href="./tour.html#ticket" class="btn btn--primary">Get Your Tickets</a>
-            </div>
+            </article>
+
+            <br>
+
+            <article class="track track--mop" aria-labelledby="mop-title">
+                <img class="cover" src="./img/mind-over-power-cover.jpg" loading="lazy" alt="Cover art for Mind Over Power with cool blues and dramatic lighting." />
+                <div>
+                    <h3 id="mop-title">Mind Over Power</h3>
+                    <p>Big drums. Bigger heart. Cinematic strings rise like boss-battle HP bars while 808s rumble the floorboards. This one’s for last-lap grit — the moment you breathe, blink, and decide that the strongest muscle is the one behind your eyes.</p>
+                    <br>
+                    <div class="meta">
+                        <span class="badge-chip">🛡 resilience</span>
+                        <span class="badge-chip">🎮 boss‑fight mode</span>
+                        <span class="badge-chip">💡 focus fuel</span>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="controls" role="group" aria-label="Mind Over Power controls">
+                        <audio controls preload="metadata" aria-label="Play Mind Over Power">
+                            <source src="mind-over-power.mp3" type="audio/mpeg" />
+                        </audio>
+                        <a class="btn btn--ghost" href="mind-over-power.mp3" download aria-label="Download Mind Over Power">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18l-5 5h3v6h4V7h3l-5-5z"/></svg>
+                            Download
+                        </a>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
 
-    <footer role="contentinfo" style="margin-top: 540px; ">
+    <footer role="contentinfo">
         © 2025 Brainwave. All rights reserved. • Built with accessibility and performance in mind.
     </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+              document.addEventListener('DOMContentLoaded', () => {
 
     // ---------------------------------------------
     // 1. Dynamic Hero Slider
@@ -566,6 +606,13 @@ footer{
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
+    
+    // Make it feel premium: only one audio plays at a time
+    const audios = Array.from(document.querySelectorAll('audio'));
+    audios.forEach(a => a.addEventListener('play', () => {
+      audios.forEach(b => { if (b !== a) b.pause(); });
+    }));
+
 
   });
     </script>

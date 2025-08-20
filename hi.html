@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Album Launch - Main Character Energy</title>
+  <meta name="description" content="Animeâ€‘vibe album landing page with playable tracks, downloads, live tour info, and a hero'sâ€‘journey story." />
+  <meta property="og:title" content="Album Launch - Main Character Energy" />
+  <meta property="og:description" content="Stream two tracks, grab downloads, and snag tickets for the Tokyo Dreams Tour." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a1a33" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rock+Salt&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="./downloads/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./downloads/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./downloads/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./downloads/android-chrome-512x512.png">
+
+  <style>
+    :root{
+      --bg:#0a1a33;         /* deep navy */
+      --surface:#0f274d;    /* navy tint */
+      --ink:#fefefe;        /* text */
+      --accent:#ff4d6d;     /* sakura neon */
+      --accent-2:#6c5ce7;   /* electric violet */
+      --glow:#ffeb3b;       /* neon glow */
+      --muted:#c4d1ff;      /* soft text */
+      --glass:rgba(255,255,255,.08);
+      --radius:22px;
+      --shadow:0 10px 35px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:var(--bg); font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; overflow-x:hidden;
+    }
+
+    /* Animated starfield + gradient */
+    body::before, body::after{
+      content:""; position:fixed; inset:-10vmax; z-index:-2; pointer-events:none;
+      background:radial-gradient(1200px 800px at 20% -10%, #132a52 0%, transparent 60%),
+      radial-gradient(1000px 700px at 120% 20%, #0b356f 0%, transparent 60%),
+      radial-gradient(1400px 900px at 50% 120%, #08162b 0%, transparent 60%);
+      filter:saturate(1.1);
+    }
+    body::after{
+      z-index:-1; opacity:.35; animation:drift 40s linear infinite; background-image:
+      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.9) 40%, transparent 45%),
+      radial-gradient(1.5px 1.5px at 30% 75%, rgba(255,255,255,.85) 40%, transparent 45%),
+      radial-gradient(1.8px 1.8px at 80% 40%, rgba(255,255,255,.7) 40%, transparent 45%),
+      radial-gradient(1.2px 1.2px at 60% 15%, rgba(255,255,255,.6) 40%, transparent 45%),
+      radial-gradient(1.4px 1.4px at 45% 55%, rgba(255,255,255,.75) 40%, transparent 45%);
+      background-size:100% 100%;
+    }
+    @keyframes drift{to{transform:translate3d(-2%, -1%, 0)}}
+
+    .container{max-width:1100px; margin-inline:auto; padding:clamp(16px, 2.5vw, 28px)}
+
+    /* Header */
+    header{position:relative; text-align:center; padding:clamp(28px,6vw,64px) 12px}
+    header .badge{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .75rem; border-radius:999px; background:var(--glass); backdrop-filter:blur(6px); box-shadow:var(--shadow); font-weight:600; color:var(--muted);}
+    .title{font-family:"Comic Sans MS", cursive; font-size:clamp(28px,5vw,56px); line-height:1.1; margin:.6rem 0 .4rem; color:var(--glow); text-shadow:0 0 12px rgba(255,235,59,.4), 2px 2px 0 var(--accent)}
+    .subtitle{color:var(--muted); font-weight:600; margin:0 auto; max-width:60ch}
+    .cta-row{margin-top:1rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.85rem 1.1rem; border-radius:999px; font-weight:800; text-decoration:none; border:2px solid transparent; transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
+    .btn--primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; box-shadow:0 10px 30px rgba(255,77,109,.35)}
+    .btn--ghost{background:var(--glass); border-color:#4b5aa7; color:var(--muted)}
+    .btn:focus-visible{outline:3px solid var(--glow); outline-offset:2px}
+    .btn:hover{transform:translateY(-1px)}
+
+    /* Sections */
+    section{scroll-margin-top:80px}
+    .card{background:rgba(15,39,77,.6); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Journey */
+    .journey{display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(16px,3vw,28px); padding:clamp(18px,2.5vw,28px)}
+    .journey h2{color:var(--accent); font-size:clamp(22px,3.2vw,32px); margin:.2rem 0 .6rem}
+    .journey p{margin:0}
+    .portrait{border-radius:18px; aspect-ratio:3/4; object-fit:cover; width:100%; box-shadow:var(--shadow)}
+
+    /* Live */
+    .live{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(16px,3vw,28px); padding:clamp(18px,2.5vw,28px); align-items:center}
+    .live h2{color:var(--accent); font-size:clamp(22px,3.2vw,32px); margin:.2rem 0 .6rem}
+    .stage{border-radius:18px; width:100%; aspect-ratio:16/10; object-fit:cover; box-shadow:var(--shadow)}
+    .ticket-btn{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none}
+
+    /* Tracks */
+    .tracks{display:grid; gap:clamp(18px,2.5vw,26px)}
+    .track{display:grid; grid-template-columns:1fr 1.2fr; gap:clamp(14px,2vw,22px); padding:clamp(16px,2vw,22px); background:var(--glass); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow); position:relative; overflow:hidden}
+    .track::before{content:""; position:absolute; inset:0; background-size:cover; background-position:center; opacity:.22; filter:saturate(1.1); z-index:0}
+    .track--mce::before{background-image:url('anime-bg-main-character.jpg')}
+    .track--mop::before{background-image:url('anime-bg-mind-over-power.jpg')}
+    .track > *{position:relative; z-index:1}
+    .cover{border-radius:16px; width:400px; height: 600px; aspect-ratio:1/1; object-fit:cover; box-shadow:0 10px 30px rgba(0,0,0,.6)}
+    .track h3{font-family:"Rock Salt", cursive; font-size:clamp(20px,2.8vw,30px); margin:.2rem 0 .5rem; color:var(--accent-2); text-shadow:1px 1px 0 rgba(0,0,0,.35)}
+    .meta{display:flex; gap:.5rem; flex-wrap:wrap; font-weight:600; color:var(--muted)}
+    .controls{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem}
+    .badge-chip{padding:.25rem .6rem; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12)}
+
+    
+    /* Footer */
+    footer{padding:28px 12px; color:var(--muted); text-align:center; font-size:.95rem}
+
+    /* Responsiveness */
+    @media (max-width: 900px){
+      .journey, .live, .track{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .btn{transition:none}
+      body::after{animation:none}
+    }
+  </style>
+  <style>
+      header{text-align:center; padding:40px 20px;}
+    .title{font-family:"Comic Sans MS", cursive, sans-serif; font-size:clamp(28px,5vw,52px); color:var(--glow); text-shadow:0 0 12px rgba(255,235,59,.4), 2px 2px 0 var(--accent)}
+    .subtitle{color:var(--muted); max-width:60ch; margin:10px auto;}
+    .btn{display:inline-block; padding:.85rem 1.2rem; border-radius:999px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:.2s;}
+    .btn--primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff;}
+    .btn--ghost{background:var(--glass); border:1px solid #4b5aa7; color:var(--muted);}
+    .btn:hover{transform:translateY(-2px);}
+
+    form{display:grid; gap:16px; margin-top:20px;}
+    label{font-weight:600;}
+    input, select{padding:.75rem; border-radius:12px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:var(--ink); font-size:1rem;}
+    input:focus, select:focus{outline:2px solid var(--accent);}
+
+    select{
+      appearance:none;
+      background:linear-gradient(135deg, var(--glass), rgba(255,255,255,0.15));
+      color:var(--ink);
+      font-weight:600;
+      cursor:pointer;
+      transition:0.25s;
+    }
+
+    select:hover, select:focus{
+      background:linear-gradient(135deg, var(--accent-2), var(--accent));
+      color:#fff;
+      box-shadow:0 0 8px rgba(255,235,59,0.6);
+    }
+
+    option{
+      background:var(--surface);
+      color:var(--ink);
+    }
+
+    /* Modal */
+    .modal{position:fixed; inset:0; background:rgba(0,0,0,.65); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:.3s;}
+    .modal.active{opacity:1; pointer-events:auto;}
+    .modal-content{background:var(--surface); padding:28px; border-radius:var(--radius); max-width:500px; width:90%; box-shadow:var(--shadow); position:relative;}
+    .close-btn{position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.4rem; color:var(--muted); cursor:pointer;}
+
+    /* Success Popup */
+    .success-popup{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.5); opacity:0; pointer-events:none; transition:.4s ease;}
+    .success-popup.active{opacity:1; pointer-events:auto;}
+    .success-popup-content{background:var(--surface); border-radius:var(--radius); padding:30px 40px; box-shadow:var(--shadow); text-align:center; max-width:350px;}
+    .success-popup-content h3{margin:0; font-family:"Comic Sans MS", cursive; color:var(--glow); font-size:1.8rem;}
+    .success-popup-content p{margin-top:12px; font-size:1.05rem; color:var(--muted); font-weight:600;}
+    .thumbs{font-size:3rem; margin-top:15px;}
+
+  </style>
+</head>
+<body>
+  <header class="container" role="banner">
+    <div class="badge">âš¡ New Album</div>
+    <h1 class="title" aria-label="Main Character Energy">MAIN CHARACTER ENERGY</h1>
+    <p class="subtitle">Animeâ€‘inspired beats, electric emotions, and a heroâ€™sâ€‘journey you can dance to.</p>
+    <div class="cta-row">
+      <a class="btn btn--primary" href="#tracks" aria-label="Jump to tracks">
+        <!-- play icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Listen now
+      </a>
+      <a class="btn btn--ghost" href="#tour" aria-label="Jump to tour">ðŸŽ« Tour dates</a>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- Journey -->
+    <section class="card journey" id="journey" aria-labelledby="journey-title">
+      <div>
+        <h2 id="journey-title">The Journey of Jesse Brainwave</h2>
+        <p>Brainwave grew up sketching manga panels on scrap notebooks, sampling sounds on a dusty laptop, and busking under neon streetlights. From Shibuya crossings to homeâ€‘studio allâ€‘nighters, every chorus was a checkpoint and every setback a training arc. This album is his â€œepisode 1â€ moment â€” the origin story where a side character decides to become the hero.</p>
+      </div>
+      <div>
+        <img class="portrait" src="./img/artist-photo.jpg" height="300px" loading="lazy" alt="Stylized portrait of Jesse Brainwave looking stageâ€‘ready under neon lights." />
+      </div>
+    </section>
+
+    <br>
+
+    <!-- Live / Tickets -->
+    <section class="card live" id="tour" aria-labelledby="live-title">
+      <img class="stage" src="./img/live-performance.jpg" loading="lazy" alt="Crowd with glow sticks at a highâ€‘energy anime concert." />
+      <div class="live-text">
+        <h2 id="live-title">Live Performance: Tokyo Dreams Tour</h2>
+        <p>Experience the soundtrack of your comingâ€‘ofâ€‘age â€” laserâ€‘sharp visuals, synchronized AR backdrops, and callâ€‘andâ€‘response hooks that lift the ceiling. Limited earlyâ€‘bird passes include a digital badge and a meetâ€‘andâ€‘greet photo op.</p>
+        <a class="btn btn--primary ticket-btn" href="#buy-ticket"  aria-label="Buy tickets">Buy Tickets</a>
+      </div>
+    </section>
+
+    <br>
+
+    <!-- Tracks -->
+    <section id="tracks" class="tracks" aria-label="Tracks">
+      <!-- Track 1 -->
+      <article class="track track--mce" aria-labelledby="mce-title">
+        <img class="cover" src="./img/main-character-cover.jpg" loading="lazy" alt="Cover art for Main Character Energy with bold neon colors." />
+        <div>
+          <h3 id="mce-title">Main Character Energy</h3>
+          <p>Step into your opening credits. A sugarâ€‘rush tempo, crunchy guitar stabs, and pixelâ€‘spark synths kick off an anthem about taking up space without apologizing. Itâ€™s the montage song for putting on headphones, lacing your sneakers, and walking into the room like fate owes you a side quest.</p>
+          <br>
+          <div class="meta">
+            <span class="badge-chip">âš¡ upbeat</span>
+            <span class="badge-chip">ðŸŽŒ Jâ€‘pop x alt</span>
+            <span class="badge-chip">âœ¨ confidence arc</span>
+          </div>
+          <br>
+          <hr>
+          <br>
+          <div class="controls" role="group" aria-label="Main Character Energy controls">
+            <audio controls preload="metadata" aria-label="Play Main Character Energy">
+              <source src="main-character-energy.mp3" type="audio/mpeg" />
+            </audio>
+            <a class="btn btn--ghost" href="main-character-energy.mp3" download aria-label="Download Main Character Energy">
+              <!-- download icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18l-5 5h3v6h4V7h3l-5-5z"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Track 2 -->
+      <article class="track track--mop" aria-labelledby="mop-title">
+        <img class="cover" src="./img/mind-over-power-cover.jpg" loading="lazy" alt="Cover art for Mind Over Power with cool blues and dramatic lighting." />
+        <div>
+          <h3 id="mop-title">Mind Over Power</h3>
+          <p>Big drums. Bigger heart. Cinematic strings rise like bossâ€‘battle HP bars while 808s rumble the floorboards. This oneâ€™s for lastâ€‘lap grit â€” the moment you breathe, blink, and decide that the strongest muscle is the one behind your eyes.</p>
+          <br>
+          <div class="meta">
+            <span class="badge-chip">ðŸ›¡ resilience</span>
+            <span class="badge-chip">ðŸŽ® bossâ€‘fight mode</span>
+            <span class="badge-chip">ðŸ’¡ focus fuel</span>
+          </div>
+          <br>
+          <hr>
+          <br>
+          <div class="controls" role="group" aria-label="Mind Over Power controls">
+            <audio controls preload="metadata" aria-label="Play Mind Over Power">
+              <source src="mind-over-power.mp3" type="audio/mpeg" />
+            </audio>
+            <a class="btn btn--ghost" href="mind-over-power.mp3" download aria-label="Download Mind Over Power">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18l-5 5h3v6h4V7h3l-5-5z"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+    <header>
+    <h1 class="title">Tokyo Dreams Tour â€“ Tickets</h1>
+    <p class="subtitle">Reserve your spot at the highâ€‘energy anime concert of the year. Limited availability!</p>
+  </header>
+
+  <main>
+    <!-- Ticket Purchase -->
+    <section class="card" style="background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); margin:20px auto; max-width:800px;" id="buy-ticket">
+      <h2>ðŸŽ« Buy Your Tickets</h2>
+      <form id="ticketForm">
+        <label for="ticket-type">Ticket Type</label>
+        <select id="ticket-type" required>
+          <option value="">Select Ticket Type...</option>
+          <option value="regular">Regular - $50</option>
+          <option value="premium">Premium - $80</option>
+          <option value="vip">VIP - $120</option>
+        </select>
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" min="1" max="10" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+
+        <button type="submit" class="btn btn--primary">Proceed to Payment</button>
+      </form>
+    </section>
+
+    <!-- Sign In -->
+    <section class="card"style="background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); margin:20px auto; max-width:800px;">
+      <h2>ðŸ”‘ Sign In for Faster Checkout</h2>
+      <p>Already have a fan account? Sign in to unlock perks like:</p>
+      <ul>
+        <li>Saved payment details for 1â€‘click checkout</li>
+        <li>Exclusive preâ€‘show livestream invites</li>
+        <li>Track your past orders & loyalty points</li>
+        <li>Early notifications for merch drops</li>
+      </ul>
+      <form>
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required>
+        <label>Password</label>
+        <input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" required>
+        <button class="btn btn--primary">Sign In</button>
+      </form>
+      <br>
+      <p>Donâ€™t have an account yet?</p>
+      <button id="openModal" class="btn btn--ghost">Register Now</button>
+      <a href="/index.html"><button class="btn btn--primary">Back to Album Page</button></a>
+    </section>
+  </main>
+
+  <!-- Registration Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">Ã—</button>
+      <h2>ðŸŒŸ Create Your Fan Account</h2>
+      <p>Join the community to access special rewards, early tickets, and membersâ€‘only surprises.</p>
+      <form>
+        <label>Full Name</label>
+        <input type="text" required>
+        <label>Email</label>
+        <input type="email" required>
+        <label>Password</label>
+        <input type="password" required>
+        <label>Confirm Password</label>
+        <input type="password" required>
+        <button class="btn btn--primary">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="successPopup" class="success-popup">
+    <div class="success-popup-content">
+      <h3>âœ… Verified!</h3>
+      <p>"Your ticket chakra has been awakened!" âœ¨</p>
+      <div class="thumbs">ðŸ‘</div>
+    </div>
+  </div>
+
+
+  <footer role="contentinfo">
+    Â© 2025 Jesse Brainwave. All rights reserved. â€¢ Built with accessibility and performance in mind.
+  </footer>
+
+  <script>
+    // Make it feel premium: only one audio plays at a time
+    const audios = Array.from(document.querySelectorAll('audio'));
+    audios.forEach(a => a.addEventListener('play', () => {
+      audios.forEach(b => { if (b !== a) b.pause(); });
+    }));
+        const modal = document.getElementById('modal');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    const ticketForm = document.getElementById('ticketForm');
+    const successPopup = document.getElementById('successPopup');
+
+    openModal.addEventListener('click', () => modal.classList.add('active'));
+    closeModal.addEventListener('click', () => modal.classList.remove('active'));
+    window.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
+
+    ticketForm.addEventListener('submit', e => {
+      e.preventDefault();
+      successPopup.classList.add('active');
+      setTimeout(() => successPopup.classList.remove('active'), 3500);
+    });
+  </script>
+</body>
+</html>

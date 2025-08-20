@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brainwave - About</title>
+    <meta name="description" content="Learn about Brainwave's journey, influences, and mission. From manga sketching to commanding the stage." />
+    <meta property="og:title" content="Brainwave - The Artist's Journey" />
+    <meta property="og:description" content="Discover the story behind the music and the artist." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0a1a33" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./downloads/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./downloads/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./downloads/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./downloads/android-chrome-512x512.png">
+    <style>
+    :root {
+    --bg:#0a1a33; /* deep navy */
+    --surface:#0f274d;    /* navy tint */
+    --ink:#fefefe; /* text */
+    --accent:#ff4d6d;     /* sakura neon */
+    --accent-2:#6c5ce7; /* electric violet */
+    --glow:#ffeb3b;       /* neon glow */
+    --muted:#c4d1ff; /* soft text */
+    --glass:rgba(255,255,255,.08);
+    --radius:22px;
+    --shadow:0 10px 35px rgba(0,0,0,.55);
+    --font-poppins: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --font-rock-salt: 'Rock Salt', cursive;
+        }
+
+        /* Global Styles & Resets */
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            color:var(--ink);
+            background:var(--bg);
+            font-family:var(--font-poppins);
+            line-height:1.6;
+            overflow-x:hidden;
+        }
+
+        /* Animated starfield + gradient */
+        body::before, body::after{
+            content:"";
+            position:fixed;
+            inset:-10vmax;
+            z-index:-2;
+            pointer-events:none;
+            background:radial-gradient(1200px 800px at 20% -10%, #132a52 0%, transparent 60%),
+            radial-gradient(1000px 700px at 120% 20%, #0b356f 0%, transparent 60%),
+            radial-gradient(1400px 900px at 50% 120%, #08162b 0%, transparent 60%);
+            filter:saturate(1.1);
+        }
+        body::after{
+            z-index:-1;
+            opacity:.35;
+            animation:drift 40s linear infinite;
+            background-image:
+            radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.9) 40%, transparent 45%),
+            radial-gradient(1.5px 1.5px at 30% 75%, rgba(255,255,255,.85) 40%, transparent 45%),
+            radial-gradient(1.8px 1.8px at 80% 40%, rgba(255,255,255,.7) 40%, transparent 45%),
+            radial-gradient(1.2px 1.2px at 60% 15%, rgba(255,255,255,.6) 40%, transparent 45%),
+            radial-gradient(1.4px 1.4px at 45% 55%, rgba(255,255,255,.75) 40%, transparent 45%);
+            background-size:100% 100%;
+        }
+        @keyframes drift{to{transform:translate3d(-2%, -1%, 0)}}
+
+        .container{max-width:1100px; margin-inline:auto; padding:clamp(16px, 2.5vw, 28px)}
+        .card{background:rgba(15,39,77,.6); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+        /* Professional Navigation Bar */
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem clamp(16px, 2.5vw, 28px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 26, 51, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-logo {
+            font-family: var(--font-rock-salt);
+            color: var(--glow);
+            font-size: 1.5rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255,235,59,.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-item {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent);
+        }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--ink);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 26, 51, 0.95);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-item {
+                padding: 0.8rem 2rem;
+                text-align: center;
+            }
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+
+        /* Dynamic Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-slide:nth-child(1) { background-image: url('./img/hero-main.jpg'); }
+        .hero-slide:nth-child(2) { background-image: url('./img/hero-journey.jpg'); }
+        .hero-slide:nth-child(3) { background-image: url('./img/hero-tour.jpg'); }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: var(--font-rock-salt);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin: 0;
+            color: var(--glow);
+            text-shadow: 0 0 20px rgba(255,235,59,0.6);
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--muted);
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+        .cta-row {
+            margin-top: 2rem;
+        }
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap:.6rem;
+            padding:.85rem 1.2rem;
+            border-radius:999px;
+            font-weight:800;
+            text-decoration:none;
+            border:2px solid transparent;
+            transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+        .btn--primary{
+            background:linear-gradient(135deg, var(--accent), var(--accent-2));
+            color:white;
+            box-shadow:0 10px 30px rgba(255,77,109,.35);
+        }
+        .btn:hover{transform:translateY(-2px)}
+
+        /* Journey Section */
+        .journey{
+            display:grid;
+            grid-template-columns:1.2fr .8fr;
+            gap:clamp(16px,3vw,28px);
+            padding:clamp(18px,2.5vw,28px);
+            margin-top: 40px;
+        }
+        .journey h2{
+            color:var(--accent);
+            font-size:clamp(22px,3.2vw,32px);
+            margin:.2rem 0 .6rem
+        }
+        .journey p{margin:0 0 1rem}
+        .portrait-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .portrait{
+            border-radius:18px;
+            aspect-ratio:3/4;
+            object-fit:cover;
+            width:100%;
+            box-shadow:var(--shadow);
+        }
+        @media (max-width: 900px){
+            .journey{grid-template-columns:1fr}
+        }
+
+        /* New Countdown Card Layout */
+        .countdown-card-section {
+            position: relative;
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+        .countdown-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .countdown-card {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+        .countdown-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .countdown-card:hover img {
+            transform: scale(1.05);
+        }
+        .countdown-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+        .countdown-title {
+            font-family: var(--font-rock-salt);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin: 0;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255,77,109,0.5);
+        }
+        .tour-text {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--muted);
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 20px 0;
+        }
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .countdown-number {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--glow);
+            text-shadow: 0 0 8px rgba(255,235,59,0.4);
+        }
+        .countdown-label {
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--muted);
+        }
+        @media (max-width: 768px) {
+            .countdown-card-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .countdown-card {
+                display: none; /* Hide images on smaller screens for focus on countdown */
+            }
+            .countdown-overlay {
+                position: static;
+                transform: none;
+            }
+        }
+
+        /* General Buttons and Links */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 800;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .btn--primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.35);
+        }
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5);
+        }
+
+        /* Footer */
+        footer{
+            padding:28px 12px;
+            color:var(--muted);
+            text-align:center;
+            font-size:.95rem;
+        }
+        /* Add to your existing styles.css file */
+
+        /* About Page Hero */
+        .page-hero {
+            min-height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            color: var(--ink);
+            border-radius: 0 0 var(--radius) var(--radius);
+            padding: 120px 20px 60px;
+        }
+        .page-hero-overlay {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .page-hero-title {
+            font-family: var(--font-rock-salt);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin: 0;
+            color: var(--glow);
+            text-shadow: 0 0 20px rgba(255,235,59,0.6);
+        }
+        .page-hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--muted);
+            max-width: 800px;
+            margin: 1rem auto;
+        }
+
+        /* About Section & Q&A */
+        .about-section {
+            padding: 2.5rem;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .about-section h2 {
+            text-align: center;
+            font-family: var(--font-rock-salt);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-top: 0;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255,77,109,0.5);
+        }
+        .bio p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .qa-section {
+            display: grid;
+            gap: 2rem;
+        }
+        .qa-item {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .qa-question {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            margin-top: 0;
+        }
+        .qa-answer {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-logo">BRAINWAVE</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="tracks.html" class="nav-item">Tracks</a>
+            <a href="tour.html" class="nav-item">Tour</a>
+            <a href="about.html" class="nav-item active">About</a>
+            <a href="contact.html" class="nav-item">Contact Us</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
+    </nav>
+
+    <header class="page-hero about-hero" style="background-image: url('./img/artist-photo.jpg');">
+        <div class="page-hero-content container">
+            <h1 class="page-hero-title">A Hero's Journey</h1>
+            <p class="page-hero-subtitle">The story of how a side character became the main event.</p>
+        </div>
+        <div class="page-hero-overlay"></div>
+    </header>
+
+    <main class="container">
+        <section class="about-section bio card" aria-labelledby="bio-title">
+            <h2 id="bio-title">The Genesis of Brainwave</h2>
+            <p>Brainwave’s professional journey began not in a traditional studio, but through a unique fusion of visual and auditory artistry. His formative years were dedicated to the meticulous discipline of manga sketching, an art form that trained his eye for narrative structure and his hand for detail. This visual storytelling background provided the framework for his musical compositions, each track meticulously layered to build a cohesive, compelling story.</p>
+            <p>He honed his technical skills through a period of self-directed learning, leveraging a minimalist home setup to experiment with sound design and digital sampling. This process, defined by resourcefulness and a deep commitment to his craft, allowed him to develop a distinct sonic signature.</p>
+            <p>His public-facing career was initiated on the streets, where he engaged in a form of real-world market testing. Busking provided invaluable experience in audience engagement, allowing him to adapt and refine his performance style in real time. This period, marked by tireless effort in environments ranging from the bustling Shibuya crossings to focused, late-night studio sessions, was critical for his development. Each completed project represented a milestone, and every professional challenge was approached as an opportunity for growth and skill acquisition.</p>
+            <p>This debut album, therefore, is not merely a collection of songs but a professional portfolio—a comprehensive showcase of his capabilities. It represents the culmination of a deliberate, multi-faceted creative process, signaling his transition from an emerging talent to a fully-fledged artist ready to lead his own career narrative.</p>
+        </section>
+        
+        <section class="about-section qa-section card" aria-labelledby="qa-title">
+            <h2 id="qa-title">Q&A with Brainwave</h2>
+            <div class="qa-item">
+                <h3 class="qa-question">What does "Main Character Energy" mean to you?</h3>
+                <p class="qa-answer">It's about embracing your story and taking control of your narrative. It's the moment you stop being a supporting character in someone else's life and step into your own spotlight. It's a mindset that applies to everything, not just music.</p>
+            </div>
+            <div class="qa-item">
+                <h3 class="qa-question">Who are your biggest creative inspirations?</h3>
+                <p class="qa-answer">I draw a lot of inspiration from the cinematic storytelling of Studio Ghibli, the vibrant energy of 90s anime openings, and the intricate world-building found in classic JRPGs. Musically, I’m influenced by artists who blend genres fearlessly, from future funk to cinematic orchestral scores.</p>
+            </div>
+            <div class="qa-item">
+                <h3 class="qa-question">What's the one message you hope listeners take away from your music?</h3>
+                <p class="qa-answer">I want my music to be the soundtrack for a breakthrough moment in someone's life. I hope it inspires courage, focus, and a feeling of unstoppable momentum—like they're ready to face any challenge and win.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        © 2025 Brainwave. All rights reserved. • Built with accessibility and performance in mind.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

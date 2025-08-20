@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brainwave - Tour Dates</title>
+    <meta name="description" content="View the full tour schedule for the Tokyo Dreams Tour and get your tickets." />
+    <meta property="og:title" content="Tokyo Dreams Tour" />
+    <meta property="og:description" content="Join the ultimate live experience. Find your city and get your tickets now." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0a1a33" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./downloads/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./downloads/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./downloads/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./downloads/android-chrome-512x512.png">
+    <style>
+              :root {
+    --bg:#0a1a33; /* deep navy */
+    --surface:#0f274d;    /* navy tint */
+    --ink:#fefefe; /* text */
+    --accent:#ff4d6d;     /* sakura neon */
+    --accent-2:#6c5ce7; /* electric violet */
+    --glow:#ffeb3b;       /* neon glow */
+    --muted:#c4d1ff; /* soft text */
+    --glass:rgba(255,255,255,.08);
+    --radius:22px;
+    --shadow:0 10px 35px rgba(0,0,0,.55);
+    --font-poppins: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --font-rock-salt: 'Rock Salt', cursive;
+}
+
+/* Global Styles & Resets */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    color:var(--ink);
+    background:var(--bg);
+    font-family:var(--font-poppins);
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+/* Animated starfield + gradient */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    inset:-10vmax;
+    z-index:-2;
+    pointer-events:none;
+    background:radial-gradient(1200px 800px at 20% -10%, #132a52 0%, transparent 60%),
+    radial-gradient(1000px 700px at 120% 20%, #0b356f 0%, transparent 60%),
+    radial-gradient(1400px 900px at 50% 120%, #08162b 0%, transparent 60%);
+    filter:saturate(1.1);
+}
+body::after{
+    z-index:-1;
+    opacity:.35;
+    animation:drift 40s linear infinite;
+    background-image:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.9) 40%, transparent 45%),
+    radial-gradient(1.5px 1.5px at 30% 75%, rgba(255,255,255,.85) 40%, transparent 45%),
+    radial-gradient(1.8px 1.8px at 80% 40%, rgba(255,255,255,.7) 40%, transparent 45%),
+    radial-gradient(1.2px 1.2px at 60% 15%, rgba(255,255,255,.6) 40%, transparent 45%),
+    radial-gradient(1.4px 1.4px at 45% 55%, rgba(255,255,255,.75) 40%, transparent 45%);
+    background-size:100% 100%;
+}
+@keyframes drift{to{transform:translate3d(-2%, -1%, 0)}}
+
+.container{max-width:1100px; margin-inline:auto; padding:clamp(16px, 2.5vw, 28px)}
+.card{background:rgba(15,39,77,.6); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+/* Professional Navigation Bar */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem clamp(16px, 2.5vw, 28px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 26, 51, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-logo {
+    font-family: var(--font-rock-salt);
+    color: var(--glow);
+    font-size: 1.5rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255,235,59,.4);
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+.nav-item {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-item:hover, .nav-item.active {
+    color: var(--accent);
+}
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+}
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--ink);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 26, 51, 0.95);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 0;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-item {
+        padding: 0.8rem 2rem;
+        text-align: center;
+    }
+    .nav-toggle {
+        display: block;
+    }
+}
+
+
+/* Dynamic Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+.hero-slide.active {
+    opacity: 1;
+}
+.hero-slide:nth-child(1) { background-image: url('./img/hero-main.jpg'); }
+.hero-slide:nth-child(2) { background-image: url('./img/hero-journey.jpg'); }
+.hero-slide:nth-child(3) { background-image: url('./img/hero-tour.jpg'); }
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+.hero-title {
+    font-family: var(--font-rock-salt);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.1;
+    margin: 0;
+    color: var(--glow);
+    text-shadow: 0 0 20px rgba(255,235,59,0.6);
+}
+.hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--muted);
+    max-width: 800px;
+    margin: 1rem auto;
+}
+.cta-row {
+    margin-top: 2rem;
+}
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+    padding:.85rem 1.2rem;
+    border-radius:999px;
+    font-weight:800;
+    text-decoration:none;
+    border:2px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn--primary{
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    color:white;
+    box-shadow:0 10px 30px rgba(255,77,109,.35);
+}
+.btn:hover{transform:translateY(-2px)}
+
+/* Journey Section */
+.journey{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:clamp(16px,3vw,28px);
+    padding:clamp(18px,2.5vw,28px);
+    margin-top: 40px;
+}
+.journey h2{
+    color:var(--accent);
+    font-size:clamp(22px,3.2vw,32px);
+    margin:.2rem 0 .6rem
+}
+.journey p{margin:0 0 1rem}
+.portrait-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.portrait{
+    border-radius:18px;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    width:100%;
+    box-shadow:var(--shadow);
+}
+@media (max-width: 900px){
+    .journey{grid-template-columns:1fr}
+}
+
+/* New Countdown Card Layout */
+.countdown-card-section {
+    position: relative;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+.countdown-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+.countdown-card {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+}
+.countdown-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.countdown-card:hover img {
+    transform: scale(1.05);
+}
+.countdown-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+.countdown-title {
+    font-family: var(--font-rock-salt);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 0;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(255,77,109,0.5);
+}
+.tour-text {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: var(--muted);
+}
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 20px 0;
+}
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.countdown-number {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--glow);
+    text-shadow: 0 0 8px rgba(255,235,59,0.4);
+}
+.countdown-label {
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+}
+@media (max-width: 768px) {
+    .countdown-card-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .countdown-card {
+        display: none; /* Hide images on smaller screens for focus on countdown */
+    }
+    .countdown-overlay {
+        position: static;
+        transform: none;
+    }
+}
+
+/* General Buttons and Links */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 800;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn--primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: white;
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.35);
+}
+.btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5);
+}
+
+/* Tour Page specific styling */
+.tour-header {
+    background: url('./img/tour-hero.jpg') no-repeat center center/cover;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--ink);
+    position: relative;
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 120px 20px 60px;
+}
+.tour-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+.tour-header > * { position: relative; z-index: 2; }
+.tour-cta { margin-top: 2rem; }
+
+/* Tour Schedule Styling */
+.tour-schedule {
+    margin-top: 40px;
+    padding: 2rem;
+    position: relative;
+}
+.tour-schedule h2 {
+    text-align: center;
+    font-family: var(--font-rock-salt);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-top: 0;
+    color: var(--glow);
+    text-shadow: 0 0 10px rgba(255,235,59,0.5);
+}
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.tour-item {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tour-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.tour-date {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+.tour-location {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+}
+.tour-venue {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Modal and Success Popup */
+.modal, .success-popup {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal.active, .success-popup.active {
+    display: flex;
+    opacity: 1;
+}
+.modal-content, .success-popup-content {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+.modal.active .modal-content, .success-popup.active .success-popup-content {
+    transform: scale(1);
+}
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--muted);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-btn:hover { color: var(--accent); }
+.modal-title {
+    font-family: var(--font-rock-salt);
+    color: var(--accent);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-top: 0;
+}
+.modal-subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.ticket-form input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--ink);
+}
+.ticket-form input::placeholder { color: var(--muted); }
+.success-popup-content h3 {
+    color: #4CAF50;
+    font-size: 2rem;
+}
+.success-popup-content p {
+    font-size: 1.2rem;
+}
+.thumbs {
+    font-size: 3rem;
+    margin-top: 1rem;
+    animation: pulse 1s infinite;
+}
+    /* Live */
+    .live{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(16px,3vw,28px); padding:clamp(18px,2.5vw,28px); align-items:center}
+    .live h2{color:var(--accent); font-size:clamp(22px,3.2vw,32px); margin:.2rem 0 .6rem}
+    .stage{border-radius:18px; width:100%; aspect-ratio:16/10; object-fit:cover; box-shadow:var(--shadow)}
+    .ticket-btn{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+    /* Modal */
+    .modal{position:fixed; inset:0; background:rgba(0,0,0,.65); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:.3s;}
+    .modal.active{opacity:1; pointer-events:auto;}
+    .modal-content{background:var(--surface); padding:28px; border-radius:var(--radius); max-width:500px; width:90%; box-shadow:var(--shadow); position:relative;}
+    .close-btn{position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.4rem; color:var(--muted); cursor:pointer;}
+
+    /* Success Popup */
+    .success-popup{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.5); opacity:0; pointer-events:none; transition:.4s ease;}
+    .success-popup.active{opacity:1; pointer-events:auto;}
+    .success-popup-content{background:var(--surface); border-radius:var(--radius); padding:30px 40px; box-shadow:var(--shadow); text-align:center; max-width:350px;}
+    .success-popup-content h3{margin:0; font-family:"Comic Sans MS", cursive; color:var(--glow); font-size:1.8rem;}
+    .success-popup-content p{margin-top:12px; font-size:1.05rem; color:var(--muted); font-weight:600;}
+    .thumbs{font-size:3rem; margin-top:15px;}
+
+header{text-align:center; padding:40px 20px;}
+    .title{font-family:"Comic Sans MS", cursive, sans-serif; font-size:clamp(28px,5vw,52px); color:var(--glow); text-shadow:0 0 12px rgba(255,235,59,.4), 2px 2px 0 var(--accent)}
+    .subtitle{color:var(--muted); max-width:60ch; margin:10px auto;}
+    .btn{display:inline-block; padding:.85rem 1.2rem; border-radius:999px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:.2s;}
+    .btn--primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff;}
+    .btn--ghost{background:var(--glass); border:1px solid #4b5aa7; color:var(--muted);}
+    .btn:hover{transform:translateY(-2px);}
+
+    form{display:grid; gap:16px; margin-top:20px;}
+    label{font-weight:600;}
+    input, select{padding:.75rem; border-radius:12px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:var(--ink); font-size:1rem;}
+    input:focus, select:focus{outline:2px solid var(--accent);}
+
+    select{
+      appearance:none;
+      background:linear-gradient(135deg, var(--glass), rgba(255,255,255,0.15));
+      color:var(--ink);
+      font-weight:600;
+      cursor:pointer;
+      transition:0.25s;
+    }
+
+    select:hover, select:focus{
+      background:linear-gradient(135deg, var(--accent-2), var(--accent));
+      color:#fff;
+      box-shadow:0 0 8px rgba(255,235,59,0.6);
+    }
+
+    option{
+      background:var(--surface);
+      color:var(--ink);
+    }
+    /* Footer */
+footer{
+    padding:28px 12px;
+    color:var(--muted);
+    text-align:center;
+    font-size:.95rem;
+}
+
+    </style>
+</head>
+<body style="height: 2500px;">
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-logo">BRAINWAVE</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="tracks.html" class="nav-item">Tracks</a>
+            <a href="tour.html" class="nav-item active">Tour</a>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="contact.html" class="nav-item">Contact Us</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
+    </nav>
+
+
+    <main class="container">
+        <header class="page-header tour-header" style="background-image: url('./img/tour.jpg');">
+            <h1 class="page-title">Tokyo Dreams Tour</h1>
+            <p class="page-subtitle">The saga continues. Join us as we bring the energy live to a city near you.</p>
+            <a id="openModal" class="btn btn--primary tour-cta">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5V14h2v3.5h-2zm1-8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                Register for Pre-Sale Tickets
+            </a>
+        </header>
+        <br>
+        <!-- Live / Tickets -->
+        <section class="card live" id="tour" aria-labelledby="live-title">
+          <img class="stage" src="./img/live-performance.jpg" loading="lazy" alt="Crowd with glow sticks at a high energy anime concert." />
+          <div class="live-text">
+            <h2 id="live-title">Live Performance: Tokyo Dreams Tour</h2>
+            <p>Experience the soundtrack of your coming of age laser sharp visuals, synchronized AR backdrops, and call and response hooks that lift the ceiling. Limited early bird passes include a digital badge and a meet and greet photo op.</p>
+            <a class="btn btn--primary ticket-btn" href="#buy-ticket"  aria-label="Buy tickets">Buy Tickets</a>
+          </div>
+        </section>
+
+        <section class="tour-schedule card" aria-labelledby="tour-schedule-title">
+            <h2 id="tour-schedule-title">Tour Schedule</h2>
+            <div class="schedule-grid">
+                <article class="tour-item">
+                    <span class="tour-date">Nov 18, 2025</span>
+                    <span class="tour-location">TOKYO, JAPAN</span>
+                    <span class="tour-venue">Akihabara Arts Hall</span>
+                </article>
+                <article class="tour-item">
+                    <span class="tour-date">Nov 22, 2025</span>
+                    <span class="tour-location">OSAKA, JAPAN</span>
+                    <span class="tour-venue">Cosmo Tower</span>
+                </article>
+                <article class="tour-item">
+                    <span class="tour-date">Nov 29, 2025</span>
+                    <span class="tour-location">SEOUL, SOUTH KOREA</span>
+                    <span class="tour-venue">Seoul Olympic Hall</span>
+                </article>
+                <article class="tour-item">
+                    <span class="tour-date">Dec 05, 2025</span>
+                    <span class="tour-location">SHANGHAI, CHINA</span>
+                    <span class="tour-venue">Mercedes-Benz Arena</span>
+                </article>
+                <article class="tour-item">
+                    <span class="tour-date">Dec 12, 2025</span>
+                    <span class="tour-location">LOS ANGELES, USA</span>
+                    <span class="tour-venue">Shrine Auditorium</span>
+                </article>
+                <article class="tour-item">
+                    <span class="tour-date">Dec 19, 2025</span>
+                    <span class="tour-location">LONDON, UK</span>
+                    <span class="tour-venue">O2 Academy Brixton</span>
+                </article>
+            </div>
+        </section>
+    </main>
+    <div id="ticket">
+        <header>
+    <h1 class="title">Tokyo Dreams Tour Tickets</h1>
+    <p class="subtitle">Reserve your spot at the high energy anime concert of the year. Limited availability!</p>
+  </header>
+
+  <main>
+    <!-- Ticket Purchase -->
+    <section class="card" style="background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); margin:20px auto; max-width:800px;" id="buy-ticket">
+      <h2>Buy Your Tickets</h2>
+      <form id="ticketForm">
+        <label for="ticket-type">Ticket Type</label>
+        <select id="ticket-type" required>
+          <option value="">Select Ticket Type...</option>
+          <option value="regular">Regular - $50</option>
+          <option value="premium">Premium - $80</option>
+          <option value="vip">VIP - $120</option>
+        </select>
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" min="1" max="10" required>
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+
+        <button type="submit" class="btn btn--primary">Proceed to Payment</button>
+      </form>
+    </section>
+
+    <!-- Sign In -->
+    <section class="card"style="background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); margin:20px auto; max-width:800px;">
+      <h2>Sign In for Faster Checkout</h2>
+      <p>Already have a fan account? Sign in to unlock perks like:</p>
+      <ul>
+        <li>Saved payment details for click checkout</li>
+        <li>Exclusive pre-how livestream invites</li>
+        <li>Track your past orders & loyalty points</li>
+        <li>Early notifications for merch drops</li>
+      </ul>
+      <form>
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required>
+        <label>Password</label>
+        <input type="password" placeholder="......" required>
+        <button class="btn btn--primary">Sign In</button>
+      </form>
+      <br>
+      <p>Don't have an account yet?</p>
+      <button id="openModal" class="btn btn--ghost">Register Now</button>
+      <a href="/index.html"><button class="btn btn--primary">Back to Album Page</button></a>
+    </section>
+  </main>
+
+  <!-- Registration Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">Ã—</button>
+      <h2>Create Your Fan Account</h2>
+      <p>Join the community to access special rewards, early tickets, and member's only surprises.</p>
+      <form>
+        <label>Full Name</label>
+        <input type="text" required>
+        <label>Email</label>
+        <input type="email" required>
+        <label>Password</label>
+        <input type="password" required>
+        <label>Confirm Password</label>
+        <input type="password" required>
+        <button class="btn btn--primary">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+    <div id="successPopup" class="success-popup">
+        <div class="success-popup-content">
+            <h3>✅ Verified!</h3>
+            <p>"Your ticket chakra has been awakened!" ✨</p>
+            <div class="thumbs">👍</div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="countdown-card-section container">
+            <div class="countdown-overlay">
+                <h2 class="countdown-title">Tokyo Dreams Tour</h2>
+                <div id="countdown-timer" class="countdown-timer">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">18</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">07</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">01</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">10</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="tour-text">Join the ultimate live experience. We’re counting down the moments until we meet.</p>
+                <a href="./tour.html#ticket" class="btn btn--primary">Get Your Tickets</a>
+            </div>
+        </section>
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer role="contentinfo" style="margin-top: 100px;">
+        © 2025 Brainwave. All rights reserved. • Built with accessibility and performance in mind.
+    </footer>
+
+    <script>
+    // ---------------------------------------------
+    // 2. Countdown Timer
+    // ---------------------------------------------
+    const countDownDate = new Date("Sep 8, 2025 00:00:00").getTime();
+
+    const updateCountdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the results
+        document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+        if (distance < 0) {
+            clearInterval(updateCountdown);
+            document.getElementById("countdown-timer").innerHTML = "<h2>The Tour Has Begun!</h2>";
+        }
+    }, 1000);
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Dynamic Hero Slider (from index.html)
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+
+    const showNextSlide = () => {
+        heroSlides.forEach(slide => slide.classList.remove('active'));
+        currentSlide = (currentSlide + 1) % heroSlides.length;
+        heroSlides[currentSlide].classList.add('active');
+    };
+
+    if (heroSlides.length > 0) {
+        setInterval(showNextSlide, 7000);
+    }
+
+    // 2. Countdown Timer (from index.html)
+    const countDownElement = document.getElementById('countdown-timer');
+    if (countDownElement) {
+        const countDownDate = new Date("Sep 8, 2025 00:00:00").getTime();
+        const updateCountdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(updateCountdown);
+                countDownElement.innerHTML = "<h2>The Tour Has Begun!</h2>";
+            }
+        }, 1000);
+    }
+
+    // 3. Responsive Navigation
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // 4. Single Audio Player (from tracks.html)
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(a => a.addEventListener('play', () => {
+        audios.forEach(b => { if (b !== a) b.pause(); });
+    }));
+
+    // 5. Modal and Success Popup (from tour.html)
+    const modal = document.getElementById('modal');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    const ticketForm = document.getElementById('ticketForm');
+    const successPopup = document.getElementById('successPopup');
+
+    if (openModal && modal && closeModal && ticketForm && successPopup) {
+        openModal.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', e => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        ticketForm.addEventListener('submit', e => {
+            e.preventDefault(); // Prevents the page from reloading
+            modal.classList.remove('active');
+            successPopup.classList.add('active');
+            setTimeout(() => {
+                successPopup.classList.remove('active');
+            }, 3000); // Popup disappears after 3 seconds
+        });
+    }
+
+});
+
+
+</script>
+</body>
+</html>
