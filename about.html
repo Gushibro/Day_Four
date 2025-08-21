@@ -468,9 +468,9 @@
         <a href="index.html" class="nav-logo">BRAINWAVE</a>
         <div class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
+            <a href="about.html" class="nav-item">About</a>
             <a href="tracks.html" class="nav-item">Tracks</a>
             <a href="tour.html" class="nav-item">Tour</a>
-            <a href="about.html" class="nav-item active">About</a>
             <a href="contact.html" class="nav-item">Contact Us</a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
@@ -514,6 +514,12 @@
         © 2025 Brainwave. All rights reserved. • Built with accessibility and performance in mind.
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script><link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://gushi-dude.app.n8n.cloud/webhook/8adc6833-c2fd-4e85-9491-11b1f66af862/chat'
+	});</script>
 </body>
 </html>

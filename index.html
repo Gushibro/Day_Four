@@ -71,7 +71,7 @@ body::after{
 @keyframes drift{to{transform:translate3d(-2%, -1%, 0)}}
 
 .container{max-width:1100px; margin-inline:auto; padding:clamp(16px, 2.5vw, 28px)}
-.card{background:rgba(15,39,77,.6); border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow)}
+.card{background:white; border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); box-shadow:var(--shadow); color: black;}
 
 /* Professional Navigation Bar */
 .main-nav {
@@ -235,6 +235,7 @@ body::after{
     gap:clamp(16px,3vw,28px);
     padding:clamp(18px,2.5vw,28px);
     margin-top: 40px;
+    height: 400px;
 }
 .journey h2{
     color:var(--accent);
@@ -253,6 +254,7 @@ body::after{
     object-fit:cover;
     width:100%;
     box-shadow:var(--shadow);
+    height: 300px;
 }
 @media (max-width: 900px){
     .journey{grid-template-columns:1fr}
@@ -393,16 +395,16 @@ footer{
         <a href="index.html" class="nav-logo">BRAINWAVE</a>
         <div class="nav-links">
             <a href="index.html" class="nav-item active">Home</a>
+            <a href="about.html" class="nav-item">About</a>
             <a href="tracks.html" class="nav-item">Tracks</a>
             <a href="tour.html" class="nav-item">Tour</a>
-            <a href="about.html" class="nav-item">About</a>
             <a href="contact.html" class="nav-item">Contact Us</a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
     </nav>
 
     <header class="hero" role="banner">
-        <div class="hero-slide active" style="background-image: url('./img/main-character-cover.jpg');">
+        <div class="hero-slide active" style="background-image: url('./img/main-character-cover-2.jpg');">
             <div class="hero-content container">
             
                 <h1 class="title">Main Character Energy</h1>
@@ -449,10 +451,7 @@ footer{
             <div>
                 <h2 id="journey-title">The Journey of Jesse Brainwave</h2>
                 <p>Brainwave’s professional journey began not in a traditional studio, but through a unique fusion of visual and auditory artistry. His formative years were dedicated to the meticulous discipline of manga sketching, an art form that trained his eye for narrative structure and his hand for detail. This visual storytelling background provided the framework for his musical compositions, each track meticulously layered to build a cohesive, compelling story.</p>
-                <p>He honed his technical skills through a period of self-directed learning, leveraging a minimalist home setup to experiment with sound design and digital sampling. This process, defined by resourcefulness and a deep commitment to his craft, allowed him to develop a distinct sonic signature.</p>
-                <p>His public-facing career was initiated on the streets, where he engaged in a form of real-world market testing. Busking provided invaluable experience in audience engagement, allowing him to adapt and refine his performance style in real time. This period, marked by tireless effort in environments ranging from the bustling Shibuya crossings to focused, late-night studio sessions, was critical for his development. Each completed project represented a milestone, and every professional challenge was approached as an opportunity for growth and skill acquisition.</p>
-                <p>This debut album, therefore, is not merely a collection of songs but a professional portfolio—a comprehensive showcase of his capabilities. It represents the culmination of a deliberate, multi-faceted creative process, signaling his transition from an emerging talent to a fully-fledged artist ready to lead his own career narrative.</p>
-            </div>
+                </div>
             <div class="portrait-container">
                 <img class="portrait" src="./img/artist-photo.jpg" loading="lazy" alt="Stylized portrait of Jesse Brainwave looking stage-ready under neon lights." />
             </div>
@@ -469,19 +468,30 @@ footer{
             <p>Experience the soundtrack of your coming of age laser sharp visuals, synchronized AR backdrops, and call and response hooks that lift the ceiling. Limited early bird passes include a digital badge and a meet and greet photo op.</p>
           </div>
         </section>
-
+        <br>
+        <section class="card live container" id="tour" aria-labelledby="live-title">
+          <div class="live-text">
+            <h2 id="live-title">Get in Touch</h2>
+            <p>Let’s connect—your message isn’t just a note, it’s a spark flowing into the Brainwave universe. Every thought you share amplifies the Brainwave experience, shaping ideas, energy, and vision. Reach out today, and let Brainwave turn your voice into the rhythm that powers tomorrow’s connection.</p>
+          </div>
+          <div style="align-items: end;">
+            <a href="./contact.html" class="btn btn--primary">Contact Us</a>
+          </div>
+        </section>
+        <br>
         <section class="countdown-card-section container">
             <div class="countdown-card-grid">
-                <div class="card countdown-card">
-                    <img src="./img/main-character-cover.jpg" alt="A high-energy live performance" loading="lazy" class="card-image">
+                <div class="card countdown-card"  style="height: 600px; width: 350px">
+                    <img src="./img/main-character-cover.jpg" alt="A high-energy live performance" loading="lazy" class="card-image" >
                 </div>
-                <div class="card countdown-card">
+                <div class="card countdown-card"  style="height: 600px; width: 350px; margin-top: 25px;">
                     <img src="./img/mind-over-power-cover.jpg" alt="Tokyo city skyline at night" loading="lazy" class="card-image">
                 </div>
-                <div class="card countdown-card">
+                <div class="card countdown-card" style="height: 600px; width: 350px; margin-top: 50px;">
                     <img src="./img/icon.png" alt="A concert crowd with lights" loading="lazy" class="card-image">
                 </div>
             </div>
+            <br>
             <div class="countdown-overlay" style="margin-top: 540px; ">
                 <h2 class="countdown-title">Tokyo Dreams Tour</h2>
                 <div id="countdown-timer" class="countdown-timer">
@@ -511,6 +521,7 @@ footer{
     <footer role="contentinfo" style="margin-top: 540px; ">
         © 2025 Brainwave. All rights reserved. • Built with accessibility and performance in mind.
     </footer>
+    
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -568,6 +579,13 @@ footer{
     });
 
   });
-    </script>
+    </script><link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://gushi-dude.app.n8n.cloud/webhook/8adc6833-c2fd-4e85-9491-11b1f66af862/chat'
+	});
+</script>
 </body>
 </html>

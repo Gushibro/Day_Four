@@ -596,9 +596,9 @@ footer{
         <a href="index.html" class="nav-logo">BRAINWAVE</a>
         <div class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
+            <a href="about.html" class="nav-item">About</a>
             <a href="tracks.html" class="nav-item">Tracks</a>
             <a href="tour.html" class="nav-item active">Tour</a>
-            <a href="about.html" class="nav-item">About</a>
             <a href="contact.html" class="nav-item">Contact Us</a>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
@@ -606,12 +606,12 @@ footer{
 
 
     <main class="container">
-        <header class="page-header tour-header" style="background-image: url('./img/tour.jpg');">
+        <header class="page-header tour-header" style="background-image: url('./img/tour.png');">
             <h1 class="page-title">Tokyo Dreams Tour</h1>
             <p class="page-subtitle">The saga continues. Join us as we bring the energy live to a city near you.</p>
             <a id="openModal" class="btn btn--primary tour-cta">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5V14h2v3.5h-2zm1-8.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                Register for Pre-Sale Tickets
+                Join the clan
             </a>
         </header>
         <br>
@@ -709,7 +709,7 @@ footer{
       </form>
       <br>
       <p>Don't have an account yet?</p>
-      <button id="openModal" class="btn btn--ghost">Register Now</button>
+      <span id="openModal2" class="btn btn--ghost">Register Now</span>
       <a href="/index.html"><button class="btn btn--primary">Back to Album Page</button></a>
     </section>
   </main>
@@ -867,12 +867,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Modal and Success Popup (from tour.html)
     const modal = document.getElementById('modal');
     const openModal = document.getElementById('openModal');
+    const openModal2 = document.getElementById('openModal2');
     const closeModal = document.getElementById('closeModal');
     const ticketForm = document.getElementById('ticketForm');
     const successPopup = document.getElementById('successPopup');
 
-    if (openModal && modal && closeModal && ticketForm && successPopup) {
+    if (modal && closeModal && ticketForm && successPopup) {
+        
         openModal.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+         openModal2.addEventListener('click', () => {
             modal.classList.add('active');
         });
 
@@ -899,6 +905,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-</script>
+</script><link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://gushi-dude.app.n8n.cloud/webhook/8adc6833-c2fd-4e85-9491-11b1f66af862/chat'
+	});</script>
 </body>
 </html>
