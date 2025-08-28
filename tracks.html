@@ -19,26 +19,37 @@
       --font-poppins:'Poppins',sans-serif;--font-rock:'Rock Salt',cursive;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--ink);font-family:var(--font-poppins);overflow-x:hidden;line-height:1.6}
-    nav.main-nav{display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1rem 2rem;background:rgba(10,26,51,.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
+    body{background:var(--bg);color:var(--ink);font-family:var(--font-poppins);overflow-x:hidden;line-height:1.6;padding-top:70px}
+
+    /* Navigation */
+    nav.main-nav{display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1rem 2rem;background:rgba(10,26,51,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
     .nav-logo{font-family:var(--font-rock);color:var(--glow);font-size:1.5rem;text-decoration:none;text-shadow:0 0 8px rgba(255,235,59,.4)}
-    .nav-links{display:flex;gap:2rem}
+    .nav-links{display:flex;gap:2rem;transition:max-height .4s ease, opacity .4s ease}
     .nav-item{color:var(--muted);text-decoration:none;font-weight:600;position:relative;transition:.3s}
-    .nav-item:hover{color:var(--accent)}
-    .nav-item::after{content:"";position:absolute;left:50%;bottom:-4px;width:0;height:2px;background:var(--accent);transition:.3s;transform:translateX(-50%)}
-    .nav-item:hover::after{width:100%}
+    .nav-item:hover,.nav-item.active{color:var(--accent)}
+    .nav-item.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--accent)}
+    .nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:1.8rem;cursor:pointer}
 
-    /* Hero Section */
-    .hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:url('./img/hero-main.jpg') center/cover no-repeat;}
+    @media(max-width:768px){
+      .nav-links{flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(10,26,51,.95);border-top:1px solid rgba(255,255,255,.1);padding:1rem 0;overflow:hidden;max-height:0;opacity:0}
+      .nav-links.active{max-height:500px;opacity:1}
+      .nav-item{text-align:center;padding:.8rem 2rem}
+      .nav-toggle{display:block}
+    }
+
+    /* Hero */
+    .hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:url('./img/hero-main.jpg') center/cover no-repeat}
     .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
-    .hero-content{position:relative;z-index:2}
+    .hero-content{position:relative;z-index:2;padding:0 10px}
     .hero h1{font-family:var(--font-rock);font-size:clamp(2.5rem,7vw,5rem);color:var(--glow);text-shadow:0 0 20px rgba(255,235,59,.6)}
-    .hero p{font-size:1.2rem;color:var(--muted);margin-top:1rem}
+    .hero p{font-size:clamp(1rem,3vw,1.3rem);color:var(--muted);margin-top:1rem}
 
-    .page-header{text-align:center;padding-top:60px;padding-bottom:40px}
+    /* Page header */
+    .page-header{text-align:center;padding:60px 20px 40px}
     .page-title{font-family:var(--font-rock);font-size:clamp(2.5rem,6vw,4rem);color:var(--accent-2)}
-    .page-subtitle{font-size:1.2rem;color:var(--muted)}
+    .page-subtitle{font-size:1.1rem;color:var(--muted);max-width:800px;margin:0 auto}
 
+    /* Tracks */
     .tracks{display:flex;flex-direction:column;gap:2rem;padding:1rem;margin-bottom:80px}
     .track{display:flex;gap:1.5rem;align-items:flex-start;background:var(--glass);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;padding:1.5rem;transition:transform .2s ease, box-shadow .2s ease;perspective:1000px}
     .track:hover{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.6)}
@@ -48,12 +59,18 @@
     .track h3{font-family:var(--font-rock);color:var(--accent-2);margin-bottom:.5rem}
     .meta{display:flex;gap:.5rem;flex-wrap:wrap;color:var(--muted)}
     .badge-chip{padding:.25rem .6rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
-    .controls{display:flex;gap:.6rem;align-items:center;margin-top:.6rem}
+    .controls{display:flex;gap:.6rem;align-items:center;margin-top:.6rem;flex-wrap:wrap}
     .btn{padding:.8rem 1.2rem;border-radius:999px;font-weight:800;text-decoration:none;transition:.3s}
     .btn--ghost{background:var(--glass);border:1px solid #4b5aa7;color:var(--muted)}
     .btn--ghost:hover{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 0 15px var(--accent)}
-    footer{padding:28px;color:var(--muted);text-align:center}
-    @media(max-width:900px){.track{flex-direction:column;align-items:center;text-align:center}.track img.cover{width:100%;max-width:380px}.track div{align-items:center}}
+
+    @media(max-width:900px){
+      .track{flex-direction:column;align-items:center;text-align:center}
+      .track img.cover{width:100%;max-width:380px}
+      .track div{align-items:center}
+    }
+
+    footer{padding:28px 12px;color:var(--muted);text-align:center;font-size:.95rem}
   </style>
 </head>
 <body>
@@ -61,11 +78,12 @@
     <a href="index.html" class="nav-logo">BRAINWAVE</a>
     <div class="nav-links">
       <a href="index.html" class="nav-item">Home</a>
-    <a href="about.html" class="nav-item">About</a>
+      <a href="about.html" class="nav-item">About</a>
       <a href="tracks.html" class="nav-item active">Tracks</a>
       <a href="tour.html" class="nav-item">Tour</a>
       <a href="contact.html" class="nav-item">Contact</a>
     </div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
   </nav>
 
   <section class="hero" style="background-image: url(./img/tour-hero.jpg);">
@@ -85,8 +103,7 @@
       <img class="cover" src="./img/main-character-cover.jpg" alt="Main Character Energy">
       <div>
         <h3>Main Character Energy</h3>
-        <p>
-Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pixel-spark synths kick off an anthem about taking up space without apologizing. It’s the montage song for putting on headphones, lacing your sneakers, and walking into the room like fate owes you a side quest</p>
+        <p>Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pixel-spark synths kick off an anthem...</p>
         <div class="meta">
           <span class="badge-chip">⚡ upbeat</span>
           <span class="badge-chip">🎌 J‑pop x alt</span>
@@ -105,7 +122,7 @@ Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pi
       <img class="cover" src="./img/mind-over-power-cover.jpg" alt="Mind Over Power">
       <div>
         <h3>Mind Over Power</h3>
-        <p>Big drums. Bigger heart. Cinematic strings rise like boss-battle HP bars while 808s rumble the floorboards. This one’s for last-lap grit — the moment you breathe, blink, and decide that the strongest muscle is the one behind your eyes.</p>
+        <p>Big drums. Bigger heart. Cinematic strings rise like boss-battle HP bars while 808s rumble the floorboards...</p>
         <div class="meta">
           <span class="badge-chip">🛡 resilience</span>
           <span class="badge-chip">🎮 boss‑fight mode</span>
@@ -124,6 +141,11 @@ Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pi
   <footer>© 2025 Brainwave. All rights reserved.</footer>
 
   <script>
+    // Mobile nav toggle
+    const navToggle=document.querySelector('.nav-toggle');
+    const navLinks=document.querySelector('.nav-links');
+    navToggle.addEventListener('click',()=>{navLinks.classList.toggle('active')});
+
     // Allow only one audio to play at a time and tilt on hover
     const audios=document.querySelectorAll('audio');
     audios.forEach(a=>{
@@ -134,12 +156,8 @@ Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pi
         });
         a.closest('.track').classList.add('playing');
       });
-      a.addEventListener('pause',()=>{
-        a.closest('.track').classList.remove('playing');
-      });
-      a.addEventListener('ended',()=>{
-        a.closest('.track').classList.remove('playing');
-      });
+      a.addEventListener('pause',()=>{a.closest('.track').classList.remove('playing')});
+      a.addEventListener('ended',()=>{a.closest('.track').classList.remove('playing')});
     });
 
     // Tilt animation
@@ -159,40 +177,5 @@ Step into your opening credits. A sugar-rush tempo, crunchy guitar stabs, and pi
       });
     });
   </script>
-</body><link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-	createChat({
-		webhookUrl: 'https://gushi-dude.app.n8n.cloud/webhook/8adc6833-c2fd-4e85-9491-11b1f66af862/chat'
-	});
-      createChat({
-	webhookUrl: '',
-	webhookConfig: {
-		method: 'POST',
-		headers: {}
-	},
-	target: '#n8n-chat',
-	mode: 'window',
-	chatInputKey: 'chatInput',
-	chatSessionKey: 'sessionId',
-	loadPreviousSession: true,
-	metadata: {},
-	showWelcomeScreen: false,
-	defaultLanguage: 'en',
-	initialMessages: [
-		"I'm Senku laying down the beat. How can I be of assistance?"
-	],
-	i18n: {
-		en: {
-			title: 'Sup Homie! 😎',
-			subtitle: "Start a chat. I'm your gee 24/7.",
-			footer: '',
-			getStarted: 'New Conversation',
-			inputPlaceholder: 'Type your question..',
-		},
-	},
-	enableStreaming: false,
-});
-  </script>
+</body>
 </html>
